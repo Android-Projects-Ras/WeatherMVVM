@@ -1,4 +1,4 @@
-package com.rogok.weather.data.response
+package com.rogok.weather.data.db.entity
 
 
 import com.google.gson.annotations.SerializedName
