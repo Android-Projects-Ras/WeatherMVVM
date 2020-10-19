@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.rogok.weather.data.db.entity.CurrentWeatherResponseEntity
+import androidx.room.TypeConverters
+import com.rogok.weather.data.db.entity.CurrentWeatherResponse
+import com.rogok.weather.internal.Converters
 
 @Database(
-    entities = [CurrentWeatherResponseEntity::class],
+    entities = [CurrentWeatherResponse::class],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
 

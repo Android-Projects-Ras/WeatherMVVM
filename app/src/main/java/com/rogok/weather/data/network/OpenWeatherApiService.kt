@@ -1,7 +1,7 @@
-package com.rogok.weather.data
+package com.rogok.weather.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.rogok.weather.data.network.response.CurrentWeatherResponse
+import com.rogok.weather.data.db.entity.CurrentWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,7 +24,9 @@ interface OpenWeatherApiService {
     ): Deferred<CurrentWeatherResponse>
 
     companion object {
-        operator fun invoke(): OpenWeatherApiService {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): OpenWeatherApiService {
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .url()
@@ -40,6 +42,7 @@ interface OpenWeatherApiService {
             }
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
             return Retrofit.Builder()
                 .client(okHttpClient)
