@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Погода</string>
+    <string name="current_action_bar_subtitle">Сегодня</string>
+    <string name="wind_speed">Скорость ветра:</string>
+    <string name="meters_per_sec">м/с</string>
+    <string name="humidity">Влажность:</string>
+    <string name="feels_like_temp">Ощущается:</string>
+    <string name="bottom_tab_7_days">7 Дней</string>
+    <string name="bottom_tab_today">Сегодня</string>
+    <string name="future_next_week">Следующая неделя</string>
+    <string name="edit_text_custom_location_hint">Введите город</string>
+    <string name="text_view_loading">Загрузка…</string>
+</resources>

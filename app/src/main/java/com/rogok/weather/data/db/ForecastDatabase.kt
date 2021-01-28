@@ -5,16 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.rogok.weather.data.db.entity.CurrentWeatherResponse
+import com.rogok.weather.data.db.entity.response.current.CurrentWeatherDao
+import com.rogok.weather.data.db.entity.response.current.CurrentWeatherResponse
+import com.rogok.weather.data.db.entity.response.future.Daily
+import com.rogok.weather.data.db.entity.response.future.FutureWeatherDao
+import com.rogok.weather.data.db.entity.response.future.FutureWeatherResponse
 import com.rogok.weather.internal.Converters
 
 @Database(
-    entities = [CurrentWeatherResponse::class],
-    version = 1
+    entities = [CurrentWeatherResponse::class, FutureWeatherResponse::class],
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao() : CurrentWeatherDao
+    abstract fun futureWeatherDao() : FutureWeatherDao
 
     companion object {
         @Volatile private var instance: ForecastDatabase? = null

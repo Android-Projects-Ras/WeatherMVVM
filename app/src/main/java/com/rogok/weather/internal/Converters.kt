@@ -3,7 +3,11 @@ package com.rogok.weather.internal
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.rogok.weather.data.db.entity.Weather
+import com.rogok.weather.data.db.entity.response.current.Weather
+import com.rogok.weather.data.db.entity.response.future.Daily
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Converters {
@@ -17,11 +21,26 @@ class Converters {
 
     //strings to list
     @TypeConverter
-    fun JsonToList(value: String?): List<Weather> {
+    fun jsonToList(value: String?): List<Weather> {
         if (value == null)
             return Collections.emptyList()
 
         val listType = object : TypeToken<List<Weather>>() {}.type
         return gson.fromJson(value, listType)
     }
+
+    @TypeConverter
+    fun listDailyToJson(list: List<Daily>): String {
+        return gson.toJson(list)
+    }
+
+    @TypeConverter
+    fun jsonDailyToList(value: String?): List<Daily> {
+        if (value == null)
+            return Collections.emptyList()
+
+        val listType = object : TypeToken<List<Daily>>() {}.type
+        return gson.fromJson(value, listType)
+    }
+
 }

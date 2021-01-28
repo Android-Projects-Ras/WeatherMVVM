@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="current_action_bar_subtitle">Today</string>
+    <string name="wind_speed">Wind speed: </string>
+    <string name="meters_per_sec"> mps</string>
+    <string name="humidity">Humidity: </string>
+    <string name="feels_like_temp">Feels like: </string>
+    <string name="bottom_tab_7_days">7 Days</string>
+    <string name="bottom_tab_today">Today</string>
+    <string name="future_next_week">Next Week</string>
+    <string name="edit_text_custom_location_hint">Enter the location</string>
+    <string name="text_view_loading">Loading...</string>
 </resources>

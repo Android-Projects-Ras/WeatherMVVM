@@ -1,7 +1,9 @@
 package com.rogok.weather.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.rogok.weather.data.db.entity.CurrentWeatherResponse
+import com.rogok.weather.data.db.entity.response.current.CurrentWeatherResponse
+import com.rogok.weather.data.db.entity.response.future.Daily
+import com.rogok.weather.data.db.entity.response.future.FutureWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -22,6 +24,17 @@ interface OpenWeatherApiService {
         @Query("lang") languageCode: String = "en",
         @Query("units") units: String = "metric"
     ): Deferred<CurrentWeatherResponse>
+
+//https://api.openweathermap.org/data/2.5/onecall?lat=47.8388&lon=35.1396&exclude=hourly&lang=ru&units=metric&appid=00d9ac59b4bdc924164e509194b86c43
+
+    @GET("onecall")
+    fun getFutureWeather(
+        @Query("lat") latitude: Double?,
+        @Query("lon") longitude: Double?,
+        @Query("exclude") exclude: String = "hourly",
+        @Query("lang") languageCode: String = "en",
+        @Query("units") units: String = "metric"
+    ): Deferred<FutureWeatherResponse>
 
     companion object {
         operator fun invoke(
